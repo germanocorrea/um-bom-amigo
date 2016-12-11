@@ -35,7 +35,9 @@ $controller_object = new $controller;
 $controller_object->setModel(new $model);
 $controller_object->{$route['action']}($route['value']);
 
-$loader = new Twig_Loader_Filesystem('app/View/' . ucfirst($route['action']));
+$loader = new Twig_Loader_Filesystem([
+    'app/View/' . ucfirst($route['action']),
+    'app/View/_layout'
+]);
 $twig = new Twig_Environment($loader);
-
 echo $twig->render($route['action'] . '.html', $controller_object->getVariables());

@@ -7,6 +7,8 @@
  * @brief MVC classes autoload based on namespaces
  */
 
+
+
 spl_autoload_register('loadClass');
 
 function loadClass($class)

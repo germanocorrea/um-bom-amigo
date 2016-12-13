@@ -1,6 +1,7 @@
 # Um Bom Amigo
 
 > Em momentos críticos, tudo o que precisamos é de Um Bom Amigo
+
 > Créditos do nome ao professor @rafajaques
 
 Um Bom Amigo é um trabalho desenvolvido para a disciplina de Programação III, do 3º ano do técnico em Informática para Internet do campus Bento do IFRS. Consiste em um sistema de recomendações de banheiros, em que os usuários podem classificar a qualidade de um banheiro de 0 a 5, além de cadastrar locais e imagens para banheiros.

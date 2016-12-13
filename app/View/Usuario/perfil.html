@@ -1,4 +1,21 @@
 {{include ('head.html')}}
 {{include ('header.html')}}
-<br>
+<br>  
+{{include ('menulateral.html')}}
+<div class="row medium-6 small-8 callout large">
+		<div class="fotoperfil">
+			 <img src="{{minhafoto}}">
+		</div>
+        <h1 class="step fi-compass">{{nome}}</h1>
+        <hr>
+        <h3><b>Eu sou:</b></h3>
+        <br>
+        <p>{{nome}}</p>
+        <br>
+        <h3><b>Meu email</b></h3>
+        <p>{{email}}</p>
+        <br>
+        <button type="submit" class="button alert" value="Editar Perfil">
+        <button type="submit" class="button warning" value="Excluir Conta">
+</div>
 {{include ('footer.html')}}

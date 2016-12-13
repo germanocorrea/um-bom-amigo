@@ -11,4 +11,6 @@ body{
 .estrelas input[type=radio]:checked ~ label i.fa:before {
   color: #CCC;
 }
-d8f4db d0edfd
+.fotoperfil {
+    border-radius: 50%;
+}

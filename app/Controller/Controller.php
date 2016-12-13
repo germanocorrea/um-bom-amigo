@@ -18,21 +18,14 @@ abstract class Controller
     public function __construct()
     {
         session_start();
-        $logged = ($this->verifyLoggedSession()) ? 'user' : 'guest';
-        $this->defineUserMenu($logged);
-
-       if (isset($_SESSION['user_type']))
-           if ($_SESSION['user_type'] == 'client')
-               if (!isset($_SESSION['carrinho'])) {
-                   $_SESSION['carrinho']['produtos'] = [];
-                   $_SESSION['carrinho']['total_preco'] = 0;
-           }
+//        $logged = ($this->verifyLoggedSession()) ? 'user' : 'guest';
     }
 
     protected function debug($what)
     {
         echo '<pre>';
         print_r($what);
+        echo '</pre> <hr> <pre>';
         var_dump($what);
         echo '</pre>';
         die;

@@ -1,5 +1,14 @@
 {
+  "autoload": {
+    "Config\\" : "app/",
+    "Controller\\" : "app/",
+    "Model\\" : "app/",
+    "View\\" : "app/"
+  },
   "require" : {
-    "twig/twig" : "1.28.*"
+    "twig/twig" : "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
   }
 }

@@ -3,10 +3,13 @@
 ### Example user template
 
 # IntelliJ project files
-.idea
-*.iml
+.idea/*
 out
 gen
 
-# Others
+# Composer
 composer.lock
+vendor/*
+
+# Sistema
+uploads/*

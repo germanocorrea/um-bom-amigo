@@ -13,7 +13,7 @@ if (isset($_SERVER['PATH_INFO'])
     $path = explode('/', $_SERVER['PATH_INFO']);
 else $path[1] = 'index';
 
-$route['controller'] = isset($path[1]) ? $path[1] : null;
+$route['controller'] = isset($path[1]) ? $path[1] : 'index';
 $route['action'] = isset($path[2]) && !empty($path[2]) ? $path[2] : 'index';
 $route['value'] = isset($path[3]) && !empty($path[3]) ? $path[3] : null;
 
@@ -36,7 +36,7 @@ $controller_object->setModel(new $model);
 $controller_object->{$route['action']}($route['value']);
 
 $loader = new Twig_Loader_Filesystem([
-    'app/View/' . ucfirst($route['action']),
+    'app/View/' . ucfirst($route['controller']),
     'app/View/_layout'
 ]);
 $twig = new Twig_Environment($loader);

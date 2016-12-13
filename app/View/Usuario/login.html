@@ -1,4 +1,37 @@
 {{include ('head.html')}}
 {{include ('header.html')}}
 <br>
+<div class="row">
+    <div class="abacaxi"></div>
+</div>
+<div class="row medium-3 small-12 callout large">
+    <div class="row">
+        <form>
+            <div class="row">
+                <form action="loga.php" method="post">
+                    <div class="medium-12 columns">
+                        <label>Login:
+                            <input type="text" placeholder="login" id="login" aria-describedby="loginHelpText">
+                        </label>
+                        <p class="help-text" id="loginHelpText">Digite seu Login</p>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Senha:
+                        <input type="password" aria-describedby="passwordHelpText">
+                    </label>
+                    <p class="help-text" id="passwordHelpText">Digite sua senha</p>
+                </div>
+            </div>
+            <hr>
+            <div class='row'>
+                <div class="input-group-button">
+                    <input type="submit" class="button" value="Logar">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row medium-3 small-12"></div>
 {{include ('footer.html')}}

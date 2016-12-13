@@ -1,4 +1,64 @@
 {{include ('head.html')}}
 {{include ('header.html')}}
 <br>
+{{include ('menulateral.html')}}
+<div class="row medium-6 small-8 callout large">
+    <h1 class="step fi-flag"> Sugerir Adição de Local</h1>
+    <p>Para sugerir novos lugares preencha o formulário abaixo.
+        Mediante avaliação de nossa equipe. </p>
+    <form>
+        <div class="row">
+            <form action="addLocal.php" method="post" enctype="multipart/form-data">
+                <div class="medium-12 columns">
+                    <label><strong>Nome:</strong>
+                        <input type="text" placeholder="Nome" id="nome" aria-describedby="loginHelpText">
+                    </label>
+                    <p class="help-text" id="loginHelpText">Digite o nome do local</p>
+                </div>
+        </div>
+        <div class="row">
+            <div class="medium-12 columns">
+                <label><strong>Geolocalização:</strong><br>
+                    <input type="checkbox" id="endereco" aria-describedby="geolocHelpText" value="geolocalização">O endereço é minha localização</option>
+                </label>
+                <p class="help-text" id="geolocHelpText">Adicionar endereço por minha Geolocalização</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-12 columns">
+                <label><strong>Informe a localização:</strong>
+                    <input type="text" id="endereco" aria-describedby="passwordHelpText">
+                </label>
+                <p class="help-text" id="passwordHelpText">Informe o endereço do local (Rua, número, bairro, cidade, CEP, estado, pais)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-12 columns">
+                <label><strong>Imagem do local</strong></label>
+                <label for="exampleFileUpload" class="button">Faça o Upload</label>
+                <input type="file" id="exampleFileUpload" class="show-for-sr" aria-describedby="pictureHelpText">
+                <p class="help-text" id="pictureHelpText">Você pode adicionar uma imagem ao local, de preferencia a fachada a fins de identificação</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-12 columns">
+                <label><strong>Contatos com proprietário(a)</strong>
+                    <input type="text" id="contato" aria-describedby="passwordHelpText">
+                </label>
+                <p class="help-text" id="passwordHelpText">Informe uma forma de contato com o proprietário do local para a validação</p>
+            </div>
+        </div>
+        <hr>
+        <div class='row'>
+            <div class="input-group-button">
+                <input type="submit" class="button success" value="Cadastrar">
+            </div>
+            <div class="input-group-button">
+                <input type="reset" class="button warning" value="Limpar Formulário">
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<div class="row medium-3 small-12"></div>
 {{include ('footer.html')}}

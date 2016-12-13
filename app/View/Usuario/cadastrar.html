@@ -1,4 +1,63 @@
 {{include ('head.html')}}
 {{include ('header.html')}}
 <br>
+<div class="row">
+    <div class="abacaxi"></div>
+</div>
+<div class="row medium-3 small-12 callout large">
+    <div class="row">
+        <form>
+            <div class="row">
+                <form action="cadastra.php" method="post">
+                    <div class="medium-12 columns">
+                        <label>Login:
+                            <input type="text" placeholder="login" id="login" aria-describedby="loginHelpText" enctype="multipart/form-data">
+                        </label>
+                        <p class="help-text" id="loginHelpText">Seu login deve ser em minúsculo e sem espaços.</p>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Senha
+                        <input type="password" aria-describedby="passwordHelpText">
+                    </label>
+                    <p class="help-text" id="passwordHelpText">Sua senha deve conter ao menos 10 carateres, um numero e um Emoji.</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Email
+                        <input type="text" id='email' name='email'>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Nome Completo
+                        <input type="text" id='nome' name='nome'>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Foto de Perfil</label>
+                    <label for="exampleFileUpload" class="button">Faça o Upload</label>
+                    <input type="file" id="exampleFileUpload" class="show-for-sr" aria-describedby="pictureHelpText">
+                    <p class="help-text" id="passwordHelpText">Sua Imagem de Perfil.</p>
+                </div>
+            </div>
+            <hr>
+            <div class='row'>
+                <div class="input-group-button">
+                    <input type="submit" class="button success" value="Cadastrar">
+                </div>
+                <div class="input-group-button">
+                    <input type="reset" class="button warning" value="Limpar Formulário">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row medium-3 small-12"></div>
 {{include ('footer.html')}}

@@ -1,4 +1,49 @@
 {{include ('head.html')}}
 {{include ('header.html')}}
 <br>
+{{include ('menulateral.html')}}
+<div class="row medium-6 small-8 callout large">
+    <h1 class="step fi-clipboard-pencil"> Avaliar Banheiros</h1>
+    <p>Espaço para avaliar banheiros...</p>
+    <form>
+        <div class="row">
+            <form action="avaliacao.php" method="post" enctype="multipart/form-data">
+                <label for="local"><strong>Local do banheiro</strong>
+                    <select id="local" name="local">
+                        <option>Xis do Zeca (Pegar opções do banco)</option>
+                    </select>
+                </label>
+                <br>
+                <label for="avalia"><strong>Avaliação</strong>
+                    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                    <div class="estrelas">
+                        <input type="radio" id="cm_star-empty" name="fb" value="" checked/>
+                        <label for="cm_star-1"><i class="fa"></i></label>
+                        <input type="radio" id="cm_star-1" name="fb" value="1"/>
+                        <label for="cm_star-2"><i class="fa"></i></label>
+                        <input type="radio" id="cm_star-2" name="fb" value="2"/>
+                        <label for="cm_star-3"><i class="fa"></i></label>
+                        <input type="radio" id="cm_star-3" name="fb" value="3"/>
+                        <label for="cm_star-4"><i class="fa"></i></label>
+                        <input type="radio" id="cm_star-4" name="fb" value="4"/>
+                        <label for="cm_star-5"><i class="fa"></i></label>
+                        <input type="radio" id="cm_star-5" name="fb" value="5"/>
+                    </div>
+                </label>
+                <br>
+                <label><strong>Comentário:</strong>
+                    <textarea class="form-control" rows="5" style="resize: none;" name="comentario" id="comentario">...</textarea>
+                </label>
+                <hr>
+                <div class='row'>
+                    <div class="input-group-button">
+                        <input type="submit" class="button success" value="Avaliar!">
+                    </div>
+                    <div class="input-group-button">
+                        <input type="reset" class="button warning" value="Não quero Mais">
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
 {{include ('footer.html')}}

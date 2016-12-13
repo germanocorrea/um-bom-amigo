@@ -15,4 +15,4 @@ Um Bom Amigo é um trabalho desenvolvido para a disciplina de Programação III,
 - Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul - Campus Bento Gonçalves
 - Curso Técnico Integrado ao Ensino Médio em Informática para Internet
 - 3º Ano
-- Desenvolvido por [@markmuu](https://github.com/markmuu) e [@germanocorrea](https://github.com/germanocorrea)
+- Desenvolvido por [@marcocanossa](https://github.com/marcocanossa) e [@germanocorrea](https://github.com/germanocorrea)

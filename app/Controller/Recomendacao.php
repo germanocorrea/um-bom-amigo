@@ -9,7 +9,7 @@
 namespace Controller;
 
 
-class Recomendacao
+class Recomendacao extends Controller
 {
 
 }

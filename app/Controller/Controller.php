@@ -18,6 +18,7 @@ abstract class Controller
     public function __construct()
     {
         session_start();
+        $this->setVariables('webaddress', WEB_ROOT);
 //        $logged = ($this->verifyLoggedSession()) ? 'user' : 'guest';
     }
 

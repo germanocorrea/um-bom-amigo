@@ -19,6 +19,10 @@ abstract class Controller
     {
         session_start();
         $this->setVariables('webaddress', WEB_ROOT);
+        if (isset($_SESSION['username']) && isset($_SESSION['username']))
+        {
+            $this->setVariables('this_username', $_SESSION['username']);
+        }
 //        $logged = ($this->verifyLoggedSession()) ? 'user' : 'guest';
     }
 

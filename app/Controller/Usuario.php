@@ -85,6 +85,9 @@ class Usuario extends Controller
             }
 
             $_SESSION['user'] = $user->get('id');
+            $_SESSION['username'] = $user->get('username');
+
+            header('Location: ' . WEB_ROOT);
         }
     }
 

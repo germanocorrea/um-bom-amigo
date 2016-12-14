@@ -25,31 +25,22 @@ class Usuario extends Controller
             {
                 if ($this->verifyInDB($key, $value))
                 {
-                    $this->variables('alert', ['error', 'Nome de Usuário ou Email já cadastrado!']);
+                    $this->variables['alert'] = ['error', 'Nome de Usuário ou Email já cadastrado!'];
                     return false;
                 }
                 $this->model->set($key, $value);
             }
 
-//          TODO: preciso verificar se o foreach ai em cima vai dar certo, se não é necessário descomentar o trecho abaixo
-//            if ($this->verifyInDB('username', $_POST['username']))
-//                return ['error', 'Nome de Usuário já existe!'];
-//            $this->model->set('username', $_POST['username']);
-//
-//            if ($this->verifyInDB('email', $_POST['email']))
-//                return ['error', 'Email já está cadastrado!'];
-//            $this->model->set('email', $_POST['email']);
-
             if (!$this->verifyImg($_FILES['avatar']))
             {
-                $this->variables('alert', ['error', 'Imagem inválida!']);
+                $this->variables['alert'] = ['error', 'Imagem inválida!'];
                 return false;
             }
             $avatarAddress = $this->fileUpload($_FILES['avatar'], 'avatar');
 
             if (!$avatarAddress)
             {
-                $this->variables('alert', ['error', 'Houve um erro ao realizar o upload da imagem!']);
+                $this->variables['alert'] = ['error', 'Houve um erro ao realizar o upload da imagem!'];
                 return false;
             }
 
@@ -57,23 +48,70 @@ class Usuario extends Controller
 
             if ($this->model->record())
             {
-                $this->variables('alert', ['success', 'Usuário cadastrado com sucesso!']);
+                $this->variables['alert'] = ['success', 'Dados cadastrados com sucesso!'];
                 return true;
             }
             else
             {
-                $this->variables('alert', ['error', 'Alguma coisa muito errada aconteceu. Chame um encanador.']);
+                $this->variables['alert'] = ['error', 'Alguma coisa muito errada aconteceu. Chame um encanador.'];
                 return false;
             }
         }
     }
 
     public function login()
-    {}
+    {
+        if ($this->verifyLoggedSession()) header('Location: ' . WEB_ROOT);
+
+        if (isset($_POST['submit']))
+        {
+            $user = $this->model->search('one', [
+                'conditions' => [
+                    'username = ?' => $_POST['username']
+                ]
+            ]);
+            if (!$user)
+            {
+                $this->variables['alert'] = ['error', 'Nome de usuário não está cadastrado!'];
+                return false;
+            }
+
+            if ($user->get('password') != $_POST['password'])
+            {
+                $this->variables['alert'] = ['error', 'Senha está incorreta!'];
+                return false;
+            }
+
+            $_SESSION['user'] = $user;
+        }
+    }
 
     public function perfil($username)
-    {}
+    {
+        $user = $this->model->search('one', [
+            'conditions' => [
+                'username = ?' => $username
+            ]
+        ]);
+        $this->variables['id'] = $user->get('id');
+        $this->variables['name'] = $user->get('name');
+        $this->variables['username'] = $user->get('username');
+        $this->variables['email'] = $user->get('email');
+        $this->variables['avatar'] = $user->get('avatar');
+        $this->variables['admin'] = $user->get('admin');
+        $this->variables['password'] = $this->decrypt($user->get('password'));
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header('Location: ' . WEB_ROOT);
+    }
 
     public function configuracoes()
-    {}
+    {
+        $this->cadastrar();
+
+        $this->perfil($_POST['user']->get('username'));
+    }
 }

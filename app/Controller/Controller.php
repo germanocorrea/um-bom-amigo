@@ -86,9 +86,9 @@ abstract class Controller
     protected function fileUpload($file, $subfolder)
     {
         $code = rand(100, 1000000000);
-        $uploadFile = 'uploads/' . $subfolder . '/' . $code . '-' . $file['name'];
-        if (is_dir('uploads/') && is_dir('uploads/' . $subfolder . '/') && !is_file($uploadFile))
-            move_uploaded_file($file['tmp_name'], SERVER_DIR . '/' . $uploadFile);
+        $uploadFile = 'uploads' . DIRECTORY_SEPARATOR . $subfolder . DIRECTORY_SEPARATOR . $code . '-' . $file['name'];
+        if (is_dir('uploads' . DIRECTORY_SEPARATOR) && is_dir('uploads' . DIRECTORY_SEPARATOR . $subfolder . DIRECTORY_SEPARATOR) && !is_file($uploadFile))
+            move_uploaded_file($file['tmp_name'], SERVER_DIR . DIRECTORY_SEPARATOR . $uploadFile);
         else return false;
         return $uploadFile;
     }
@@ -115,6 +115,11 @@ abstract class Controller
     }
 
     protected function crypto($string)
+    {
+        return $string;
+    }
+
+    protected function decrypt($string)
     {
         return $string;
     }

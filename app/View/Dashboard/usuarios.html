@@ -1,4 +1,13 @@
 {{include ('head.html')}}
 {{include ('header.html')}}
 <br>
+{{include ('menulateral.html}}
+<div class="row medium-6 small-8 callout large">
+    <h1>Usuarios</h1>
+    <p>Todos os usuarios do Universo</p>
+    <hr>
+    {% for item in navigation %}
+    <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    <li><a href="#" name="delete">Delete User</a></li>
+    {% endfor %}
 {{include ('footer.html')}}

@@ -6,11 +6,17 @@
     <h1 class="step fi-compass"> Minha Conta</h1>
     <p>Informações de sua conta e perfil, fique a vontade para alterar</p>
     <form action="{{webaddress}}/usuario/configuracoes" method="post">
+        <label>Nome de Usuário
+            <input type="text" id='username' name='username' value="{{username}}">
+        </label>
         <label>Email
-            <input type="text" id='email' name='email'>
+            <input type="text" id='email' name='email' value="{{email}}">
         </label>
         <label>Nome
-            <input type="text" id='name' name='name'>
+            <input type="text" id='name' name='name' value="{{email}}">
+        </label>
+        <label>Senha
+            <input type="password" id='password' name='password' value="{{password}}">
         </label>
 
         <label>Foto de Perfil</label>

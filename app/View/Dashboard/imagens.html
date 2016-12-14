@@ -1,4 +1,46 @@
 {{include ('head.html')}}
+<<script src="js/jquery.js"></script>
+<script src="js/lightbox.js"></script>
+
+<link href="css/lightbox.min.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function() {
+        $('#gallery a').lightBox();
+    });
+</script>
+<style type="text/css">
+    /* jQuery lightBox plugin - Gallery style */
+    #gallery {
+        background-color: #fff;
+        padding: 10px;
+        width: auto;
+    }
+    #gallery ul { list-style: none; }
+    #gallery ul li { display: inline; }
+    #gallery ul img {
+        border: 5px solid #444444;
+        border-width: 5px 5px 20px;
+    }
+    #gallery ul a:hover img {
+        border: 5px solid #fff;
+        border-width: 5px 5px 20px;
+        color: #fff;
+    }
+    #gallery ul a:hover { color: #fff; }
+</style>
 {{include ('header.html')}}
 <br>
+{{include ('menulateral.html')}}
+<div class="row medium-6 small-8 callout large">
+    <h1>{{local}}</h1>
+    <br>
+    <p>Imagens do local</p>
+    <hr>
+    <div id="gallery">
+        <ul>
+            <li>    <a href=""#"" rel="lightbox" title="Imagem 1"><img src="#"  width="160" height="160" alt="" title="Img#1" /></a>
+                <a href=""#"" rel="lightbox" title="Imagem 2"><img src="#" width="160" height="160" alt="" title="Img#2" /></a>
+                <a href=""#"" rel="lightbox" title="Imagem 3"><img src="#" width="160" height="160" alt="" title="Img#3" /></a>
+            </li><br /></ul>
+</div>
 {{include ('footer.html')}}

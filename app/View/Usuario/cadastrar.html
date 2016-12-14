@@ -2,11 +2,13 @@
 {{include ('header.html')}}
 <br>
 <div class="row">
-    <div class="abacaxi"></div>
+    <div class="abacaxi">
+        <span class="callout {% if alert.0 == 'error' %}warning{% else %}success{% endif %}">{{alert.1}}</span>
+    </div>
 </div>
 <div class="row medium-3 small-12 callout large">
     <div class="row">
-        <form action="{{webaddress}}/usuario/cadastrar" method="post">
+        <form action="{{webaddress}}/usuario/cadastrar" method="post" enctype="multipart/form-data">
             <div class="row">
                     <div class="medium-12 columns">
                         <label>Nome de Usuário:
@@ -41,9 +43,9 @@
             <div class="row">
                 <div class="medium-12 columns">
                     <label>Foto de Perfil</label>
-                    <label for="exampleFileUpload" class="button">Faça o Upload</label>
-                    <input type="file" id="exampleFileUpload" class="show-for-sr" name="avatar" id="avatar" aria-describedby="pictureHelpText">
-                    <p class="help-text" id="passwordHelpText">Sua Imagem de Perfil.</p>
+                    <label for="avatar" class="button">Faça o Upload</label>
+                    <input type="file" class="show-for-sr" name="avatar" id="avatar" aria-describedby="imgdescribe">
+                    <p class="help-text" id="imgdescribe">Sua Imagem de Perfil.</p>
                 </div>
             </div>
             <hr>

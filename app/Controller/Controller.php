@@ -86,20 +86,21 @@ abstract class Controller
     protected function fileUpload($file, $subfolder)
     {
         $code = rand(100, 1000000000);
-        $uploadFile = 'uploads' . DIRECTORY_SEPARATOR . $subfolder . DIRECTORY_SEPARATOR . $code . '-' . $file['name'];
+        $file_extension = explode('/', $file['type']);
+        $file_extension = $file_extension[1];
+        $uploadFile = 'uploads' . DIRECTORY_SEPARATOR . $subfolder . DIRECTORY_SEPARATOR . $code . '.' . $file_extension;
         if (is_dir('uploads' . DIRECTORY_SEPARATOR) && is_dir('uploads' . DIRECTORY_SEPARATOR . $subfolder . DIRECTORY_SEPARATOR) && !is_file($uploadFile))
             move_uploaded_file($file['tmp_name'], SERVER_DIR . DIRECTORY_SEPARATOR . $uploadFile);
         else return false;
         return $uploadFile;
     }
 
-    protected function verifyImg($file)
+    protected function verifyImg($file_type)
     {
-        $file_name = explode('.', $file);
-        $extension = strtolower($file_name[1]);
-        if ($extension != 'png' || $extension != 'jpg' || $extension != 'jpeg')
+        $file_type = explode('/', $file_type);
+        if ($file_type[0] != 'image')
             return false;
-        // TODO: complementar a verificação de imaagem
+        else return true;
     }
 
     protected function verifyInDB($column, $value, $table = false)

@@ -15,6 +15,8 @@ class Usuario extends Controller
     {
         if (isset($_POST['submit']))
         {
+            unset($_POST['submit']);
+
             $this->model->set('name', $_POST['name']);
             $this->model->set('password', $this->crypto($_POST['password']));
 
@@ -31,12 +33,12 @@ class Usuario extends Controller
                 $this->model->set($key, $value);
             }
 
-            if (!$this->verifyImg($_FILES['avatar']))
+            if (!$this->verifyImg($_FILES['avatar']['type']))
             {
                 $this->variables['alert'] = ['error', 'Imagem inválida!'];
                 return false;
             }
-            $avatarAddress = $this->fileUpload($_FILES['avatar'], 'avatar');
+            $avatarAddress = $this->fileUpload($_FILES['avatar'], 'avatars');
 
             if (!$avatarAddress)
             {

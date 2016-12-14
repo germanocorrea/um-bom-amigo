@@ -10,5 +10,5 @@ define('APP_DIR', 'app');
 define('APP_NAME', 'Sua Como Éter');
 define('ASSETS_DIR', 'assets');
 define('PROTOCOL', 'http'); // or https
-define('WEB_ROOT', PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . '/sua-como-eter');
-define('SERVER_DIR', '/var/www/html/sua-como-eter');
+define('WEB_ROOT', PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . '/um-bom-amigo');
+define('SERVER_DIR', '/var/www/html/um-bom-amigo');

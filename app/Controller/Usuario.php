@@ -82,15 +82,15 @@ class Usuario extends Controller
                 return false;
             }
 
-            $_SESSION['user'] = $user;
+            $_SESSION['user'] = $user->get('id');
         }
     }
 
-    public function perfil($username)
+    public function perfil($user_identification, $column = 'username')
     {
         $user = $this->model->search('one', [
             'conditions' => [
-                'username = ?' => $username
+               $column . ' = ?' => $user_identification
             ]
         ]);
         $this->variables['id'] = $user->get('id');
@@ -112,6 +112,6 @@ class Usuario extends Controller
     {
         $this->cadastrar();
 
-        $this->perfil($_POST['user']->get('username'));
+        $this->perfil($_POST['user'], 'id');
     }
 }

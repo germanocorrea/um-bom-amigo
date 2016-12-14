@@ -7,7 +7,9 @@
     <p>Pagina onde voce encontrara muitas coisas/p>
     <hr>
     {% for item in navigation %}
-        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+        <li>
+            <a href="{{ item.href }}">{{ item.caption }}</a>
+        </li>
         <li><a href="#" name="delete">Delete Local</a></li>
         <li><a href="#" name="add">Add Local</a></li>
         <li><a href="#" name="change">Change Local</a></li>

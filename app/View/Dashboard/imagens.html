@@ -38,9 +38,9 @@
     <hr>
     <div id="gallery">
         <ul>
-            <li>    <a href=""#"" rel="lightbox" title="Imagem 1"><img src="#"  width="160" height="160" alt="" title="Img#1" /></a>
-                <a href=""#"" rel="lightbox" title="Imagem 2"><img src="#" width="160" height="160" alt="" title="Img#2" /></a>
-                <a href=""#"" rel="lightbox" title="Imagem 3"><img src="#" width="160" height="160" alt="" title="Img#3" /></a>
+            {% for item in navigation %}
+            <li><a href=""#"" rel="lightbox" title="Imagem 1"><img src="#"  width="160" height="160" alt="" title="Img#1" /></a>
             </li><br /></ul>
+        {% endfor %}
 </div>
 {{include ('footer.html')}}

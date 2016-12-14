@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="medium-12 columns">
                     <label>Senha
-                        <input type="password" aria-describedby="passwordHelpText">
+                        <input type="password" id="password" name="password" aria-describedby="passwordHelpText">
                     </label>
                     <p class="help-text" id="passwordHelpText">Sua senha deve conter ao menos 10 carateres, um numero e um Emoji.</p>
                 </div>
@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="medium-12 columns">
                     <label>Nome Completo
-                        <input type="text" id='nome' name='nome'>
+                        <input type="text" id='name' name='name'>
                     </label>
                 </div>
             </div>
@@ -43,14 +43,14 @@
                 <div class="medium-12 columns">
                     <label>Foto de Perfil</label>
                     <label for="exampleFileUpload" class="button">Faça o Upload</label>
-                    <input type="file" id="exampleFileUpload" class="show-for-sr" aria-describedby="pictureHelpText">
+                    <input type="file" id="exampleFileUpload" class="show-for-sr" name="avatar" id="avatar" aria-describedby="pictureHelpText">
                     <p class="help-text" id="passwordHelpText">Sua Imagem de Perfil.</p>
                 </div>
             </div>
             <hr>
             <div class='row'>
                 <div class="input-group-button">
-                    <input type="submit" class="button success" value="Cadastrar">
+                    <input type="submit" class="button success" name="submit" value="Cadastrar">
                 </div>
                 <div class="input-group-button">
                     <input type="reset" class="button warning" value="Limpar Formulário">

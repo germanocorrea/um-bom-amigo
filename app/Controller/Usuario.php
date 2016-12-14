@@ -24,7 +24,10 @@ class Usuario extends Controller
             foreach ($_POST as $key => $value)
             {
                 if ($this->verifyInDB($key, $value))
-                    return ['error', 'Nome de Usuário ou Email já cadastrado!'];
+                {
+                    $this->variables('alert', ['error', 'Nome de Usuário ou Email já cadastrado!']);
+                    return false;
+                }
                 $this->model->set($key, $value);
             }
 
@@ -38,16 +41,30 @@ class Usuario extends Controller
 //            $this->model->set('email', $_POST['email']);
 
             if (!$this->verifyImg($_FILES['avatar']))
-                return ['error', 'Imagem inválida!'];
+            {
+                $this->variables('alert', ['error', 'Imagem inválida!']);
+                return false;
+            }
             $avatarAddress = $this->fileUpload($_FILES['avatar'], 'avatar');
 
             if (!$avatarAddress)
-                return ['error', 'Houve um erro ao realizar o upload da imagem!'];
+            {
+                $this->variables('alert', ['error', 'Houve um erro ao realizar o upload da imagem!']);
+                return false;
+            }
+
             $this->model->set('avatar', $avatarAddress);
 
             if ($this->model->record())
-                return ['success', 'Usuário Cadastrado com sucesso!'];
-            else return ['error', 'Alguma coisa muito errada aconteceu. Chame um encanador.']
+            {
+                $this->variables('alert', ['success', 'Usuário cadastrado com sucesso!']);
+                return true;
+            }
+            else
+            {
+                $this->variables('alert', ['error', 'Alguma coisa muito errada aconteceu. Chame um encanador.']);
+                return false;
+            }
         }
     }
 

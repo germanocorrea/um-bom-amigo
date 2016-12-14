@@ -1,3 +1,4 @@
+<body>
 <div class="top-bar">
   <div class="top-bar-title">
     <strong><a href="{{webaddress}}">Um Bom Amigo</a></strong>
@@ -6,15 +7,26 @@
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
         <li>
-          <a class="step fi-male-female" href="{{webaddress}}/usuario/login"> Conta</a>
+          <a class="step fi-male-female" href="{{webaddress}}/usuario/login"> {{user_name}}</a>
           <ul class="menu vertical">
-            <li><a class="step fi-plus 50" href="{{webaddress}}/usuario/cadastrar">  Criar Conta</a></li>
-            <li><a class="step fi-power" href="{{webaddress}}/usuario/logout"> Logout</a></li>
-            <li><a class="step fi-torsos-all-female" href="{{webaddress}}/usuario/perfil/{{this_username}}"> Minha Conta</a></li>
+              {% for thing in user_dropdown %}
+              <li><a href="{{thing.1}}" class="{{thing.2}}"> {{thing.0}}</a></li>
+              {% endfor %}
           </ul>
         </li>
-        <li><a class="step fi-heart" href="{{webaddress}}/banheiro/classificar"> Avaliar Local</a></li>
-        <li><a class="step fi-marker" href="{{webaddress}}/banheiro/adicionar"> Sugerir Novo</a></li>
+        {% for thing in user_topbar %}
+        <li><a href="{{thing.1}}" class="{{thing.2}}"> {{thing.0}}</a></li>
+        {% endfor %}
+          {% if admin_dropdown != null %}
+          <li>
+              <a href="{{webaddress}}/dashboard" class="step fi-clipboard-pencil"> Dashboard</a>
+              <ul class="menu vertical">
+                  {% for thing in admin_dropdown %}
+                  <li><a href="{{thing.1}}" class="{{thing.2}}"> {{thing.0}}</a></li>
+                  {% endfor %}
+              </ul>
+          </li>
+          {% endif %}
       </ul>
     </div>
     <div class="top-bar-right">

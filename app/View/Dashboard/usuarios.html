@@ -1,7 +1,7 @@
 {{include ('head.html')}}
 {{include ('header.html')}}
 <br>
-{{include ('menulateral.html}}
+{{include ('menulateral.html')}}
 <div class="row medium-6 small-8 callout large">
     <h1>Usuarios</h1>
     <p>Todos os usuarios do Universo</p>
@@ -10,4 +10,5 @@
     <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
     <li><a href="#" name="delete">Delete User</a></li>
     {% endfor %}
+</div>
 {{include ('footer.html')}}

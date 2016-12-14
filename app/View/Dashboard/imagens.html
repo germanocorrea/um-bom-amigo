@@ -1,8 +1,8 @@
 {{include ('head.html')}}
-<<script src="js/jquery.js"></script>
-<script src="js/lightbox.js"></script>
+<script src="{{webaddress}}/assets/js/jquery.js"></script>
+<script src="{{webaddress}}/assets/js/lightbox.js"></script>
 
-<link href="css/lightbox.min.css" rel="stylesheet" />
+<link href="{{webaddress}}/assets/css/lightbox.min.css" rel="stylesheet" />
 <script type="text/javascript">
     $(function() {
         $('#gallery a').lightBox();
@@ -39,8 +39,12 @@
     <div id="gallery">
         <ul>
             {% for item in navigation %}
-            <li><a href=""#"" rel="lightbox" title="Imagem 1"><img src="#"  width="160" height="160" alt="" title="Img#1" /></a>
-            </li><br /></ul>
-        {% endfor %}
+            <li>
+                <a href="#" rel="lightbox" title="Imagem 1"><img src="#"  width="160" height="160" alt="" title="Img#1" /></a>
+            </li>
+            <br>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 {{include ('footer.html')}}

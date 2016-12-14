@@ -23,7 +23,8 @@ abstract class Controller
         {
             $this->setVariables('this_username', $_SESSION['username']);
         }
-//        $logged = ($this->verifyLoggedSession()) ? 'user' : 'guest';
+        $logged = ($this->verifyLoggedSession()) ? 'user' : 'guest';
+        $this->defineUserMenu($logged);
     }
 
     protected function debug($what)
@@ -68,20 +69,38 @@ abstract class Controller
         switch ($logged)
         {
             case 'guest':
-                $this->variables['have_cart'] = false;
                 $this->variables['user_name'] = 'Visitante';
                 $this->variables['user_dropdown'] = [
-                    ['Fazer Login', WEB_ROOT . '/user/login'],
-                    ['Cadastre-se!', WEB_ROOT . '/user/new'],
+                    // ['Nome', 'URL', 'Classe']
+                    ['Login', WEB_ROOT . '/usuario/login', 'step fi-male-female'],
+                    ['Criar Conta', WEB_ROOT . '/usuario/cadastrar', 'step fi-plus 50'],
                 ];
+                $this->variables['user_topbar'] = null;
+                $this->variables['admin_dropdown'] = null;
                 break;
             case 'user':
-                $this->variables['have_cart'] = true;
-                $this->variables['user_name'] = $_SESSION['user'];
-                if ($_SESSION['user_type'] == 'admin') $this->variables['user_dropdown'] = [['Administração', WEB_ROOT . '/administration']];
-                $this->variables['user_dropdown'][] = ['Perfil', WEB_ROOT . '/user/profile'];
-                $this->variables['user_dropdown'][] = ['Configurações', WEB_ROOT . '/user/configuration'];
-                $this->variables['user_dropdown'][] = ['Sair', WEB_ROOT . '/user/logout'];
+                $this->variables['user_name'] = $_SESSION['username'];
+                if ($_SESSION['user_type'] == 1) {
+                    $this->variables['admin_dropdown'] = [
+                        // ['Nome', 'URL', 'Classe']
+                        ['Galeria de Imagens', WEB_ROOT . '/dashboard/imagens', 'step fi-photo'],
+                        ['Locais', WEB_ROOT . '/dashboard/locais', 'step fi-trees'],
+                        ['Usuários', WEB_ROOT . '/dashboard/locais', 'step fi-torsos-all-female']
+                    ];
+                }
+                else $this->variables['admin_dropdown'] = null;
+                $this->variables['user_dropdown'] = [
+                    // ['Nome', 'URL', 'Classe']
+                    ['Minha Conta', WEB_ROOT . '/usuario/perfil', 'step fi-torsos-all-female'],
+                    ['Configurações', WEB_ROOT . '/usuario/configuracoes', 'step fi-widget'],
+                    ['Logout', WEB_ROOT . '/usuario/logout', 'step fi-power']
+                ];
+
+                $this->variables['user_topbar'] = [
+                    // ['Nome', 'URL', 'Classe']
+                    ['Avaliar Local', WEB_ROOT . '/banheiro/classificar', 'step fi-heart'],
+                    ['Sugerir Novo', WEB_ROOT . '/banheiro/adicionar', 'step fi-marker'],
+                ];
                 break;
         }
         return true;

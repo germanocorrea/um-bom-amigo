@@ -11,6 +11,9 @@ namespace Controller;
 
 class Dashboard extends Controller
 {
+    public function index()
+    {}
+
     public function imagens()
     {}
 

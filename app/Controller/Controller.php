@@ -26,7 +26,7 @@ abstract class Controller
     {
         echo '<pre>';
         print_r($what);
-        echo '</pre> <hr> <pre>';
+        echo '</pre><hr><pre>';
         var_dump($what);
         echo '</pre>';
         die;
@@ -50,9 +50,6 @@ abstract class Controller
 
     public function setModel($model)
     {
-        // $model_name = get_class($model);
-        // NOTE: isso ai em cima depois era utilizado abaixo como $this->{$model_name} = $model
-        // entretanto, não é possível manter isso por causa dos namespaces
         $this->model = $model;
     }
 
@@ -86,11 +83,39 @@ abstract class Controller
         return true;
     }
 
-    protected function fileUpload($file)
+    protected function fileUpload($file, $subfolder)
     {
         $code = rand(100, 1000000000);
-        $uploadFile = 'uploads/' . $code . '-' . $file['name'];
-        move_uploaded_file($file['tmp_name'], SERVER_DIR . '/' . $uploadFile);
+        $uploadFile = 'uploads/' . $subfolder . '/' . $code . '-' . $file['name'];
+        if (is_dir('uploads/') && is_dir('uploads/' . $subfolder . '/') && !is_file($uploadFile))
+            move_uploaded_file($file['tmp_name'], SERVER_DIR . '/' . $uploadFile);
+        else return false;
         return $uploadFile;
+    }
+
+    protected function verifyImg($file)
+    {
+        $file_name = explode('.', $file);
+        $extension = strtolower($file_name[1]);
+        if ($extension != 'png' || $extension != 'jpg' || $extension != 'jpeg')
+            return false;
+        // TODO: complementar a verificação de imaagem
+    }
+
+    protected function verifyInDB($column, $value, $table = false)
+    {
+        if ($table) $this->model->setTableName($table);
+
+        if ($this->model->search('one', [
+            'conditions' => [
+                $column . ' = ?' => $value
+            ]
+        ])) return true;
+        else return false;
+    }
+
+    protected function crypto($string)
+    {
+        return $string;
     }
 }

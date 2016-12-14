@@ -49,6 +49,11 @@ abstract class Model
         return $this->table = $table_name;
     }
 
+    public function getTableName()
+    {
+        return $this->table;
+    }
+
     public function search($what, $options = false)
     {
         switch ($what)

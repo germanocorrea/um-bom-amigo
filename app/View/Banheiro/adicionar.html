@@ -56,9 +56,36 @@
             <div class="input-group-button">
                 <input type="reset" class="button warning" value="Limpar Formulário">
             </div>
+            <div class="input-group-button">
+                <button onClick="tentarMeuLocal()" class="button" name="meulocal" id="meulocal" value="Meu Local">Pegar Meu local autual</button>
+            </div>
         </div>
     </form>
 </div>
 </div>
 <div class="row medium-3 small-12"></div>
+<script type="text/javascript" src="assets/js/leaflet.js"></script>
+<script type="text/javascript" src="assets/js/cria_mapa.js"></script>
+<script type="text/javascript">
+    function onMapClick(e) {
+        var marker = L.marker(e.latlng).addTo(mapa);
+    }
+
+    mapa.on('click', onMapClick);
+    function tentarMeuLocal() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(pegaPosition);
+        } else {
+            alert("Não foi possível encontrar o seu lugar!");
+        }
+    }
+    function pegaPosition(position) {
+        var coord = position.coords.latitude;
+        var enadas = position.coords.longitude;
+        mapa.setView([coord, enadas]);
+        var marker = L.marker([coord, enadas]).addTo(mapa);
+        marker.bindPopup("Você está aqui!").openPopup();
+        L.circle([-29.161793, -51.522194], 200).addTo(mapa);
+    }
+</script>
 {{include ('footer.html')}}

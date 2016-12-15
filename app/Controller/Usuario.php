@@ -11,10 +11,20 @@ namespace Controller;
 
 class Usuario extends Controller
 {
-    public function cadastrar()
+    public function cadastrar($update = false)
     {
         if (isset($_POST['submit']))
         {
+            if ($update)
+            {
+                $user = $this->model->search('one', [
+                    'conditions' => [
+                        'username = ?' => $_POST['username']
+                    ]
+                ]);
+                $this->model->set('id', $user->get('id'));
+            }
+
             unset($_POST['submit']);
 
             $this->model->set('name', $_POST['name']);
@@ -99,6 +109,9 @@ class Usuario extends Controller
                $column . ' = ?' => $user_identification
             ]
         ]);
+
+        if ($user == null) header('Location: ' . WEB_ROOT);
+
         $this->variables['id'] = $user->get('id');
         $this->variables['name'] = $user->get('name');
         $this->variables['username'] = $user->get('username');
@@ -116,7 +129,7 @@ class Usuario extends Controller
 
     public function configuracoes()
     {
-        $this->cadastrar();
+        $this->cadastrar(true);
 
         $this->perfil($_POST['user'], 'id');
     }

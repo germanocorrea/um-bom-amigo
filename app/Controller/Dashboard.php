@@ -18,11 +18,19 @@ class Dashboard extends Controller
     {}
 
     public function locais()
-    {}
+    {
+        // TODO: excluir locais
+    }
 
     public function usuarios()
-    {}
+    {
+        // TODO: tornar admin
+        // TODO: suspender conta
+        // TODO: excluir conta
+    }
 
     public function imagem($id)
-    {}
+    {
+        // TODO: excluir imagem
+    }
 }

@@ -4,14 +4,11 @@
 {{include ('menulateral.html')}}
 <div class="row medium-6 small-8 callout large">
     <h1 class="page-header">{{titulo}}</h1>
-    <button onclick="mapa.setView([navigator.geolocation.getCurrentPosition(pegaPosition))">Viajar</button>
-    <button onclick="tentarMeuLocal()">Meu Local</button>
+    <button class="button" onclick="mapa.setView([navigator.geolocation.getCurrentPosition(pegaPosition))">Viajar</button>
+    <button class="button" onclick="tentarMeuLocal()">Meu Local</button>
     <div id="mapao" onclick="onMapClick()"></div>
 </div>
-</div>
-</div>
-<script type="text/javascript" src="assets/js/leaflet.js"></script>
-<script type="text/javascript" src="assets/js/cria_mapa.js"></script>
+<script type="text/javascript" src="{{webaddress}}/assets/js/cria_mapa.js"></script>
 <script type="text/javascript">
     function onMapClick(e) {
         var marker = L.marker(e.latlng).addTo(mapa);

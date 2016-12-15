@@ -17,4 +17,9 @@ class ControllerBanheiroTest extends PHPUnit
     {
         $this->banheiro = new Banheiro();
     }
+
+    public function procurarLocais()
+    {
+        $this->banheiro->procurar('-29.1640935,-51.5194727');
+    }
 }

@@ -9,7 +9,8 @@
     "twig/twig" : "*",
     "egeloen/google-map" : "*",
     "php-http/guzzle6-adapter": "*",
-    "php-http/message": "*"
+    "php-http/message": "*",
+    "anthonymartin/geo-location" : "^1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "*"

@@ -9,12 +9,17 @@
 namespace Controller;
 
 
+use AnthonyMartin\GeoLocation\GeoLocation;
+
 class Banheiro extends Controller
 {
+
+    private $raio = 6;
+
     public function visualizar($id)
     {
         if (!$this->verifyLoggedSession()) header('Location: ' . WEB_ROOT . '/usuario/login');
-        $map = new Map();
+//        $map = new Map();
     }
 
     public function classificar($id)
@@ -68,10 +73,37 @@ class Banheiro extends Controller
 
     }
 
-    public function procurar()
+    public function procurar($localization = false)
     {
+        if (!$localization): ?>
+            <script>
+                if (navigator.geolocation)
+                {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                }
+                function showPosition(position)
+                {
+                    var route = position.coords.latitude + "," + position.coords.longitude;
+                    window.location.href = "<?php echo WEB_ROOT ?>/banheiro/procurar/" + route;
+                }
+            </script>
+        <?php endif;
+
         if (!$this->verifyLoggedSession()) header('Location: ' . WEB_ROOT . '/usuario/login');
-        // eita
+
+        $retorno = [];
+        $localization = explode(',', $localization);
+        $current_pos = GeoLocation::fromDegrees($localization[0], $localization[1]);
+
+        $locais = $this->model->search('all');
+
+        foreach ($locais as $local) {
+            $local_pos = GeoLocation::fromDegrees($local['latitude'],$local['longitude']);
+            if ($current_pos->distanceTo($local_pos, 'kilometers') <= $this->raio)
+                $retorno[] = $local;
+        }
+
+        $this->variables['locais'] = $retorno;
     }
 
 }

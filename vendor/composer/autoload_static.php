@@ -150,6 +150,13 @@ class ComposerStaticInita807bf82d4fed41b14177099fb4576a2
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
             ),
         ),
+        'A' => 
+        array (
+            'AnthonyMartin' => 
+            array (
+                0 => __DIR__ . '/..' . '/anthonymartin/geo-location/src',
+            ),
+        ),
     );
 
     public static $classMap = array (

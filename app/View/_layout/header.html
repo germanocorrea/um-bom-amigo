@@ -1,4 +1,14 @@
 <body>
+<script>
+    if ("{{alert.0}}" == 'error' || "{{alert.0}}" == 'success')
+    {
+        sweetAlert({
+            title: "{% if alert.0 == 'error' %}Oops!{% else %}Oba!{% endif %}",
+            type: "{% if alert.0 == 'error' %}warning{% else %}success{% endif %}",
+            text: "{{alert.1}}"
+        });
+    }
+</script>
 <div class="top-bar">
   <div class="top-bar-title">
     <strong><a href="{{webaddress}}">Um Bom Amigo</a></strong>

@@ -260,4 +260,10 @@ abstract class Model
         $this->data[$var] = $valor;
         return true;
     }
+
+    public function unsetAll()
+    {
+        $this->data = null;
+        return true;
+    }
 }

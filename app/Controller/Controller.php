@@ -91,7 +91,7 @@ abstract class Controller
                 else $this->variables['admin_dropdown'] = null;
                 $this->variables['user_dropdown'] = [
                     // ['Nome', 'URL', 'Classe']
-                    ['Minha Conta', WEB_ROOT . '/usuario/perfil', 'step fi-torsos-all-female'],
+                    ['Minha Conta', WEB_ROOT . '/usuario/perfil/' . $_SESSION['username'], 'step fi-torsos-all-female'],
                     ['Configurações', WEB_ROOT . '/usuario/configuracoes', 'step fi-widget'],
                     ['Logout', WEB_ROOT . '/usuario/logout', 'step fi-power']
                 ];

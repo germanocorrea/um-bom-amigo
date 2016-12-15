@@ -41,15 +41,19 @@ class Banheiro extends Controller
                 ]
             ]);
 
+            $this->model->unsetAll();
             $this->model->setTableName('imagens');
             $this->model->set('idBanheiro', $banheiro->get('id'));
 
-            if (!$this->verifyImg($_FILES['imagem']['type']))
+            if (!$this->verifyImg($_FILES['image']['type']))
             {
                 $this->variables['alert'] = ['error', 'Imagem inválida!'];
                 return false;
             }
-            $address = $this->fileUpload($_FILES['imagem'], 'banheiros');
+            else
+            {
+                $address = $this->fileUpload($_FILES['image'], 'banheiros');
+            }
 
             if (!$address)
             {

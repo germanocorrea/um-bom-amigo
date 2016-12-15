@@ -11,6 +11,12 @@ namespace Controller;
 
 class Dashboard extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->verifyPermission();
+    }
+
     public function index()
     {}
 

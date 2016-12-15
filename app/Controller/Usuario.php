@@ -11,6 +11,12 @@ namespace Controller;
 
 class Usuario extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        if ($this->verifyLoggedSession() == false && $_SERVER['PATH_INFO'] != '/usuario/login') header('Location: ' . WEB_ROOT . '/usuario/login');
+    }
+
     public function cadastrar($update = false)
     {
         if (isset($_POST['submit']))
@@ -104,15 +110,11 @@ class Usuario extends Controller
 
     public function perfil($user_identification, $column = 'username')
     {
-        if (!$this->verifyLoggedSession()) header('Location: ' . WEB_ROOT . '/usuario/login');
-
         $user = $this->model->search('one', [
             'conditions' => [
                $column . ' = ?' => $user_identification
             ]
         ]);
-
-        if ($user == null) header('Location: ' . WEB_ROOT);
 
         $this->variables['id'] = $user->get('id');
         $this->variables['name'] = $user->get('name');
@@ -125,16 +127,14 @@ class Usuario extends Controller
 
     public function logout()
     {
-        if (!$this->verifyLoggedSession()) header('Location: ' . WEB_ROOT . '/usuario/login');
         session_destroy();
         header('Location: ' . WEB_ROOT);
     }
 
     public function configuracoes()
     {
-        if (!$this->verifyLoggedSession()) header('Location: ' . WEB_ROOT . '/usuario/login');
         $this->cadastrar(true);
 
-        $this->perfil($_POST['user'], 'id');
+        $this->perfil($_SESSION['user'], 'id');
     }
 }

@@ -6,7 +6,10 @@
     "View\\" : "app/"
   },
   "require" : {
-    "twig/twig" : "*"
+    "twig/twig" : "*",
+    "egeloen/google-map" : "*",
+    "php-http/guzzle6-adapter": "*",
+    "php-http/message": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "*"

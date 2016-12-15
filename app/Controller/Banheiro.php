@@ -13,7 +13,7 @@ class Banheiro extends Controller
 {
     public function visualizar($id)
     {
-        // TODO: retornar dados do banheiro
+        $map = new Map();
     }
 
     public function classificar($id)
@@ -23,12 +23,25 @@ class Banheiro extends Controller
 
     public function adicionar()
     {
-        // TODO: cadastrar dados de banheiro
+        if (isset($_POST['submit']))
+        {
+
+//            TODO: implementar o que segue em outro momento
+//            if (isset($_POST['address']))
+//            {
+//                $geocoder = new Geocoder();
+//                $geocoder->registerProviders(array(
+//                    new GeocoderProvider(new CurlHttpAdapter()),
+//                ));
+//                $request = $geocoder->geocode($_POST['address']);
+//            }
+        }
+
     }
 
     public function procurar()
     {
-        // TODO: roda a recomendação
+        // eita
     }
 
 }

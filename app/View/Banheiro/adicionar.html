@@ -6,9 +6,8 @@
     <h1 class="step fi-flag"> Sugerir Adição de Local</h1>
     <p>Para sugerir novos lugares preencha o formulário abaixo.
         Mediante avaliação de nossa equipe. </p>
-    <form>
         <div class="row">
-            <form action="addLocal.php" method="post" enctype="multipart/form-data">
+            <form action="{{webaddress}}/banheiro/adicionar" method="post" enctype="multipart/form-data">
                 <div class="medium-12 columns">
                     <label><strong>Nome:</strong>
                         <input type="text" placeholder="Nome" id="name" name="name" aria-describedby="loginHelpText">
@@ -19,18 +18,12 @@
         <div class="row">
             <div class="medium-12 columns">
                 <label><strong>Geolocalização:</strong><br>
-                    <input type="checkbox" id="enderecogeo" name="enderecogeo" aria-describedby="geolocHelpText" value="geolocalização">O endereço é minha localização</option>
+                    <button onClick="tentarMeuLocal()" class="button">Pegar Meu Local Atual</button>
+                    <input type="text" id="endereco" name="endereco" class="show-for-sr">
                 </label>
-                <p class="help-text" id="geolocHelpText">Adicionar endereço por minha Geolocalização</p>
+                <p class="help-text" id="geolocHelpText">Adicionar endereço por Geolocalização</p>
             </div>
-        </div>
-        <div class="row">
-            <div class="medium-12 columns">
-                <label><strong>Informe a localização:</strong>
-                    <input type="text" id="endereco" name="endereco" aria-describedby="passwordHelpText">
-                </label>
-                <p class="help-text" id="passwordHelpText">Informe o endereço do local (Rua, número, bairro, cidade, CEP, estado, pais)</p>
-            </div>
+            <div class="medium-12 columns" id="mapao" style="height: 280px"></div>
         </div>
         <div class="row">
             <div class="medium-12 columns">
@@ -56,16 +49,12 @@
             <div class="input-group-button">
                 <input type="reset" class="button warning" value="Limpar Formulário">
             </div>
-            <div class="input-group-button">
-                <button onClick="tentarMeuLocal()" class="button" name="meulocal" id="meulocal" value="Meu Local">Pegar Meu local autual</button>
-            </div>
         </div>
     </form>
 </div>
 </div>
 <div class="row medium-3 small-12"></div>
-<script type="text/javascript" src="assets/js/leaflet.js"></script>
-<script type="text/javascript" src="assets/js/cria_mapa.js"></script>
+<script type="text/javascript" src="{{webaddress}}/assets/js/cria_mapa.js"></script>
 <script type="text/javascript">
     function onMapClick(e) {
         var marker = L.marker(e.latlng).addTo(mapa);

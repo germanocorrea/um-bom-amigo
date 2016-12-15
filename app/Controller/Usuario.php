@@ -14,7 +14,7 @@ class Usuario extends Controller
     public function __construct()
     {
         parent::__construct();
-        if ($this->verifyLoggedSession() == false && $_SERVER['PATH_INFO'] != '/usuario/login') header('Location: ' . WEB_ROOT . '/usuario/login');
+        if ($this->verifyLoggedSession() == false && $_SERVER['PATH_INFO'] != '/usuario/login' && $_SERVER['PATH_INFO'] != '/usuario/cadastrar') header('Location: ' . WEB_ROOT . '/usuario/login');
     }
 
     public function cadastrar($update = false)

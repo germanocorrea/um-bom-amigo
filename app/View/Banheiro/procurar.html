@@ -3,33 +3,26 @@
 <br>
 {{include ('menulateral.html')}}
 <div class="row medium-6 small-8 callout large">
-    <h1 class="page-header">{{titulo}}</h1>
-    <button class="button" onclick="mapa.setView([navigator.geolocation.getCurrentPosition(pegaPosition))">Viajar</button>
-    <button class="button" onclick="tentarMeuLocal()">Meu Local</button>
-    <div id="mapao" onclick="onMapClick()"></div>
+    <h2 class="page-header">Locais Próximos Recomendados</h2>
+    <div class="row">
+        {% for local in locais %}
+        <div class="small-3 column">
+            {% for imagem in img %}
+            {% if imagem.idBanheiro == local.id %}
+            <img src="{{imagem.endereco}}" class="thumbnail" height="100%" width="auto">
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="small-9 columns">
+            <ul>
+                <li>Local: {{local.name}}</li>
+                <li>Média: {{local.media}}</li>
+            </ul>
+            <span class="right"><a href="https://www.google.com/maps/search/{{local.latitude}},{{local.longitude}}?hl=pt-BR" class="button" style="float: right;">Google Maps</a></span>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
 </div>
-<script type="text/javascript" src="{{webaddress}}/assets/js/cria_mapa.js"></script>
-<script type="text/javascript">
-    function onMapClick(e) {
-        var marker = L.marker(e.latlng).addTo(mapa);
-    }
-
-    mapa.on('click', onMapClick);
-    function tentarMeuLocal() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(pegaPosition);
-        } else {
-            alert("Não foi possível encontrar o seu lugar!");
-        }
-    }
-    function pegaPosition(position) {
-        var coord = position.coords.latitude;
-        var enadas = position.coords.longitude;
-        mapa.setView([coord, enadas]);
-        var marker = L.marker([coord, enadas]).addTo(mapa);
-        marker.bindPopup("Você está aqui!").openPopup();
-        L.circle([-29.161793, -51.522194], 200).addTo(mapa);
-    }
-</script>
 </div>
 {{include ('footer.html')}}

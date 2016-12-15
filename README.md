@@ -8,8 +8,8 @@ Um Bom Amigo é um trabalho desenvolvido para a disciplina de Programação III,
 
 ## Instalação:
 - `php composer.phar install` ou `composer install` (irá instalar o Twig e o PHPUnit)
-- Crie o banco de dados utilizando o arquivo schema.sql
-- Modifique o arquivo de configuração config.ini
+- Crie o banco de dados utilizando o arquivo umbomamigo.sql
+- Modifique os valores nos arquivos de configuração Server.php e DataBase.php dentro do diretório app/Config
 
 ---
 - Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul - Campus Bento Gonçalves

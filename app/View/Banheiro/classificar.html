@@ -3,17 +3,9 @@
 <br>
 {{include ('menulateral.html')}}
 <div class="row medium-6 small-8 callout large">
-    <h1 class="step fi-clipboard-pencil"> Avaliar Banheiros</h1>
-    <p>Espaço para avaliar banheiros...</p>
-    <form>
+    <h1 class="step fi-clipboard-pencil"> Avaliar o Banheiro {{banheiro_nome}}</h1>
         <div class="row">
-            <form action="avaliacao.php" method="post" enctype="multipart/form-data">
-                <label for="local"><strong>Local do banheiro</strong>
-                    <select id="local" name="local">
-                        <option>Xis do Zeca (Pegar opções do banco)</option>
-                    </select>
-                </label>
-                <br>
+            <form action="{{webaddress}}/banheiro/classificar/{{banheiro_id}}" method="post" enctype="multipart/form-data">
                 <label for="avalia"><strong>Avaliação</strong>
                     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
                     <div class="estrelas">
@@ -32,9 +24,10 @@
                 </label>
                 <br>
                 <label><strong>Comentário:</strong>
-                    <textarea class="form-control" rows="5" style="resize: none;" name="comentario" id="comentario">...</textarea>
+                    <textarea class="form-control" rows="5" style="resize: none;" name="comentario" id="comentario"></textarea>
                 </label>
                 <hr>
+                <input type="number" name="banheiro" class="show-for-sr" value="{{banheiro_id}}">
                 <div class='row'>
                     <div class="input-group-button">
                         <input type="submit" class="button success" name="submit" value="Avaliar!">

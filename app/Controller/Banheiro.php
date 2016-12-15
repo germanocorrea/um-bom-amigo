@@ -26,6 +26,28 @@ class Banheiro extends Controller
     {
         if (!$this->verifyLoggedSession()) header('Location: ' . WEB_ROOT . '/usuario/login');
         // TODO: inserir classificação no banco
+        if (isset($_POST['submit']))
+        {
+            $this->model->setTableName('avaliacaos');
+            $this->model->set('comentario', $_POST['comentario']);
+            $this->model->set('estrelas', $_POST['fb']);
+            $this->model->set('idBanheiro', (int) $_POST['banheiro']);
+            $this->model->set('idUsuario', (int) $_SESSION['user']);
+
+            $this->model->record();
+
+            $this->variables['alert'] = ['success', 'Banheiro avaliado com sucesso!'];
+        }
+
+        $this->model->setTableName('banheiros');
+        $banheiro = $this->model->search('one', [
+                'conditions' => [
+                        'id = ?' => $id
+                ]
+        ]);
+
+        $this->variables['banheiro_nome'] = $banheiro->get('name');
+        $this->variables['banheiro_id'] = $banheiro->get('id');
     }
 
     public function adicionar()
@@ -92,18 +114,89 @@ class Banheiro extends Controller
         if (!$this->verifyLoggedSession()) header('Location: ' . WEB_ROOT . '/usuario/login');
 
         $retorno = [];
+        $avaliacoes = [];
         $localization = explode(',', $localization);
-        $current_pos = GeoLocation::fromDegrees($localization[0], $localization[1]);
+        $current_pos = GeoLocation::fromDegrees((float) $localization[0], (float)  $localization[1]);
 
         $locais = $this->model->search('all');
 
+        $this->model->setTableName('avaliacaos');
+
         foreach ($locais as $local) {
-            $local_pos = GeoLocation::fromDegrees($local['latitude'],$local['longitude']);
+            $local_pos = GeoLocation::fromDegrees((float) $local['latitude'], (float) $local['longitude']);
             if ($current_pos->distanceTo($local_pos, 'kilometers') <= $this->raio)
-                $retorno[] = $local;
+                $retorno[$local['id']] = $local;
+
+            $avaliacoes[$local['id']] = $this->model->search('all', [
+                    'conditions' => [
+                            'idBanheiro = ?' => $local['id']
+                    ]
+            ]);
         }
 
-        $this->variables['locais'] = $retorno;
+        $none = [];
+
+        foreach ($avaliacoes as $key => $avaliacoes_local)
+        {
+            if ($avaliacoes_local == null) $none[] = $key;
+        }
+
+        foreach ($none as $this) unset($avaliacoes[$this]);
+
+        foreach ($avaliacoes as $key => $avaliacoes_local)
+        {
+            $media = 0;
+
+            $qnt = count($avaliacoes_local);
+            foreach ($avaliacoes_local as $avaliacao)
+            {
+                $media += $avaliacao['estrelas'];
+            }
+            $avaliacoes[$key] = (float) $media / (float) $qnt;
+        }
+
+        $this->model->setTableName('imagens');
+        $imagem = [];
+        foreach ($retorno as $local)
+        {
+            $img = $this->model->search('one', [
+                'conditions' => [
+                    'idBanheiro = ?' => $local['id']
+                ]
+            ]);
+
+            if ($img != null)
+                $imagem[$img->get('idBanheiro')] = $img->get('endereco');
+
+            foreach ($none as $key => $item) {
+                if ($local['id'] == $item)
+                {
+                    $none[$key] = $local;
+                }
+            }
+        }
+
+
+        $this->variables['imgs'] = $imagem;
+        $this->variables['medias'] = $avaliacoes;
+
+        foreach ($retorno as $key => $local)
+            if (isset($avaliacoes[$local['id']]))
+                $retorno[$key]['media'] = $avaliacoes[$local['id']];
+
+        $retornomesmo = [];
+
+        arsort($avaliacoes);
+
+        foreach ($avaliacoes as $key => $avaliacao)
+        {
+            foreach ($retorno as $local)
+            {
+                if ($local['id'] == $key) $retornomesmo[$key] = $local;
+            }
+        }
+
+        $this->variables['locais'] = $retornomesmo;
     }
 
 }

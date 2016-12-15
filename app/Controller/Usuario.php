@@ -104,6 +104,8 @@ class Usuario extends Controller
 
     public function perfil($user_identification, $column = 'username')
     {
+        if (!$this->verifyLoggedSession()) header('Location: ' . WEB_ROOT . '/usuario/login');
+
         $user = $this->model->search('one', [
             'conditions' => [
                $column . ' = ?' => $user_identification
@@ -123,12 +125,14 @@ class Usuario extends Controller
 
     public function logout()
     {
+        if (!$this->verifyLoggedSession()) header('Location: ' . WEB_ROOT . '/usuario/login');
         session_destroy();
         header('Location: ' . WEB_ROOT);
     }
 
     public function configuracoes()
     {
+        if (!$this->verifyLoggedSession()) header('Location: ' . WEB_ROOT . '/usuario/login');
         $this->cadastrar(true);
 
         $this->perfil($_POST['user'], 'id');

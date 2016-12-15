@@ -56,14 +56,14 @@
 <div class="row medium-3 small-12"></div>
 <script type="text/javascript" src="{{webaddress}}/assets/js/cria_mapa.js"></script>
 <script type="text/javascript">
-    function onMapClick(e) {
+    function addMark(e) {
         var marker = L.marker(e.latlng).addTo(mapa);
     }
 
-    mapa.on('click', onMapClick);
     function tentarMeuLocal() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(pegaPosition);
+            return false;
         } else {
             alert("Não foi possível encontrar o seu lugar!");
         }
